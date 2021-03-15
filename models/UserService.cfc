@@ -1,35 +1,8 @@
-/**
-* I manage contacts
-*/
-component accessors="true" singleton{
-	
-	/**
-	* Contacts DB
-	*/
-    // property name="contacts";
-    /**
-    * The last ID tracker
-    */
-    // property name="lastID";
-   
-    /**
-     * Constructor
-     */
-	// UserService function init(){
 
-	// 	record= queryExecute("SELECT * FROM student", {datasource= "restdb"});
-	// 	variables.contacts= serializeJSON(record);
-	// 	writeDump(variables.contacts);
-	// 	return variables.contacts;
-	// }
-	
-	/**
-	* Get all contacts
-	*/
+component accessors="true" singleton{
+
 	struct function getAll(required id){
-		// record= serializeJSON(variables.contacts) ;
-		// return record;
-		// return "hello";
+		
 		if(id eq 0){
 			record= queryExecute("SELECT * FROM student", {datasource= "restdb", returntype="struct", columnkey="idstudent"});
 			var myStruct = StructNew();
@@ -43,7 +16,6 @@ component accessors="true" singleton{
 					}
 				ArrayAppend( myStruct.QueryArray, myStruct.Row );
 			}
-			// writeDump(arrayToStruct(myStruct.QueryArray));
 			returnStruct= structNew();
 			cfloop(array=#myStruct.QueryArray#, index="item"){
 				returnStruct[item.idstudent]=item;
@@ -61,19 +33,13 @@ component accessors="true" singleton{
 			returnStruct.language=record.language;
 			returnStruct.course=record.course;
 		}
-		// writeDump(returnStruct);
 		return returnStruct;
 		
 	}
 
-	/**
-	* save and return all contacts
-	* @contactID The id to save/update
-	* @data The data record
-	*/
+	
 	any function save( required id, required data ){
-		// insert, move lastID
-		// writeDump(arguments.data);
+		
 		if(id eq 0){
 		queryExecute("insert into `student` (
                     `firstname`,
@@ -119,26 +85,13 @@ component accessors="true" singleton{
 					arguments.data.course,
 					id]);
 		}
-		// if( arguments.id == 0 ){
-		// 	arguments.id = variables.lastID;
-		// 	arguments.data.id 	= variables.lastID;
-		// 	variables.lastID++;
-		// } 
-
-		// // Store data
-		// variables.contacts[ arguments.contactID ] = arguments.data;
 		
-		// return variables.contacts;
 	}
 
-	/**
-	* Remove a contact
-	* @contactID The incoming ID
-	*/
+
 	void function remove( required ID ){
 		 queryExecute("DELETE FROM student WHERE idstudent=?",[ID]);
-		// writeDump(ID);
-		// abort;
+		
 	}
 
 }

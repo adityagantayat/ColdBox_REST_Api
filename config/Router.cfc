@@ -21,28 +21,11 @@ component {
 		route( "/hello", function( event, rc, prc ) {
 			return "hello world!";
 		} );
-		// route( 
-    	// pattern="/api/user",
-    	// target="user.index",
-    	// name="api.user"
-		// );
-	// route( "/api/user" )
-    //     .to( "user.index" );
-	// writeDump("hello"); 
-	route("/api/user/:id").toHandler("student.index");
-	route("/api/save/:id").toHandler("student.save");
-	route("/api/delete/:id").toHandler("student.remove");
-	// route( "/api/user/:userID" )
-    //         .withAction( {
-    //             GET    = 'index',
-    //             POST   = 'save',
-    //             PUT    = 'save',
-    //             DELETE = 'remove'
-    //         } )
-    //         .toHandler( "student" );
+		
+		route("/api/user/:id").toHandler("student.index");
+		route("/api/save/:id").toHandler("student.save");
+		route("/api/delete/:id").toHandler("student.remove");
 
-
-		// API Echo
 		get( "/api/echo", "Echo.index" );
 
 		// API Authentication Routes

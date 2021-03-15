@@ -3,7 +3,6 @@
  */
 component extends="coldbox.system.RestHandler"{
 	property name="userService" inject="UserService";
-	//  property name="firstname" type="string" default="";
 
 	// OPTIONAL HANDLER PROPERTIES
 	this.prehandler_only 	= "";
@@ -43,14 +42,8 @@ component extends="coldbox.system.RestHandler"{
 	 
 
 	function index( event, rc, prc ){
-		// event.setView( "student/index" );
-		// return "hello student";
-		// writeDump("hello");
+	
 		return userService.getAll(#rc.id#) ;
-		// return prc.data;
-
-		
-
 	}
 
 	/**
@@ -65,12 +58,7 @@ component extends="coldbox.system.RestHandler"{
 	 * save
 	 */
 	function save( event, rc, prc ){
-		// event.setView( "student/save" );
-		// var requestBody = event.getHTTPContent( json=true );
-		// userService.save(0,requestBody);
-		
-		// writeDump(	rc.id);
-		// abort;
+	
 		data=structNew();
 		data.firstname=#rc.firstname#;
 		data.lastname=#rc.lastname#;
